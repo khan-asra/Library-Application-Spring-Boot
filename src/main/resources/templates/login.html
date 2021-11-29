@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymleaf.org"
+	xmlns:sec="https://www.thymleaf.org/thymleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>Log In</title>
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+	th:href="@{/css/style.css}"></link>
+</head>
+
+
+<body>
+
+
+
+	<header>
+		<h1>Small Town Library</h1>
+		<h3>“Reading is to the mind what exercise is to the body.” 
+		– Joseph Addison</h3>
+	</header>
+	
+	<br>
+	
+		<div class="myDiv">
+	
+	<div th:if="${param.error}" class="error">
+		<p>Invalid user name and password</p>
+	</div>
+	<div th:if="${param.logout}" class="error">
+		<p>You are logged out</p>
+	</div>
+
+
+	<form action="#" th:action="@{/login}" method="post">
+		<h2>Enter your information to log in</h2>
+		<p>
+			User name: <input type="text" name="username" />
+		</p>
+		<p>
+			Password: <input type="password" name="password" />
+		</p>
+
+		<input type="submit" value="Log In" />
+	</form>
+
+
+	Not registered?
+	<a href="/register" th:href="@{/register}">Register here</a>
+
+
+
+	<p>
+		<a href="/" th:href="@{/}">Back to index</a>
+	</p>
+
+</div>
+
+
+
+</body>
+</html>

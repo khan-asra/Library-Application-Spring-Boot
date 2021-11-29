@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymleaf.org/thymleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>Welcome to our library</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+	<header>
+		<h1>Small Town Library</h1>
+		<h3>“The unread story is not a story; it is little black marks on
+			wood pulp. The reader, reading it, makes it live: a live thing, a
+			story.” – Ursula K. LeGuin</h3>
+	</header>
+	<br>
+
+	<div class="myDiv">
+
+
+		<h2 th:text="|Reviews for ${title} by ${author}|">Reviews for</h2>
+
+		<div th:if="${reviewList.empty}">
+			<h2>No Reviews</h2>
+		</div>
+
+		<div th:unless="${reviewList.empty}">
+
+			<ul>
+				<li th:each="review: ${reviewList}" th:text="${review.text}"></li>
+
+			</ul>
+
+
+			<input type="hidden" th:value="${bookId}" />
+
+		</div>
+		<div sec:authorize="hasAnyRole('ROLE_USER','ROLE_MANAGER')">
+
+			<a href="#" th:href="@{/user/add-review/}+${bookId}">Add a Review</a>
+			<form action="#" th:action="@{/logout}" method="post">
+				<input type="submit" value="Logout">
+			</form>
+		</div>
+
+
+		<section sec:authorize="isAnonymous()">
+			<h2>
+				Want to leave a review? <a href="#" th:href="@{/login}"> Login
+					here</a>
+			</h2>
+		</section>
+
+
+		<p>
+			<a href="/" th:href="@{/}">Back to index</a>
+		</p>
+
+	</div>
+
+
+</body>
+</html>

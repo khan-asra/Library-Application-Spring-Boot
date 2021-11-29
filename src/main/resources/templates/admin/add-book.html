@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymleaf.org/thymleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>Add Book</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	
+	<header>
+		<h1>Small Town Library</h1>
+		<h3>“The reading of all good books is like a conversation with
+			the finest minds of past centuries.” – Rene Descartes</h3>
+	</header>
+	<br>
+	
+	<div class="myDiv">
+
+
+		<form action="#" th:action="@{/admin/addANewBook}" method="post">
+			<h2>Add a New Book</h2>
+			<p>
+				title: <input type="text" name="title" required />
+			</p>
+			<p>
+				Author: <input type="text" name="author" required />
+			</p>
+
+			<input type="submit" value="Add a Book!" />
+		</form>
+
+
+
+
+		<form action="#" th:action="@{/logout}" method="get">
+			<input type="submit" value="Logout" />
+		</form>
+
+
+		<p>
+			<a href="/" th:href="@{/}">Back to index</a>
+		</p>
+	</div>
+
+
+</body>
+</html>

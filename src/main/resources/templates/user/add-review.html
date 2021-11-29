@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymleaf.org/thymleaf-extras-springsecurity5">
+<head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<meta charset="UTF-8">
+<title>Add a review</title>
+</head>
+<body>
+
+
+	<header>
+		<h1>Small Town Library</h1>
+		<h3>“Show me a family of readers, and I will show you the people
+			who move the world.” – Napoleon Bonaparte</h3>
+	</header>
+	<br>
+
+<div class="myDiv">
+
+	<h1>We are all ears!! Tell us about it </h1>
+
+		<h1 th:text="|Reviews for ${title} |"></h1>
+
+	<form action="#" th:action="@{/user/addReview/}+${bookId}" method="POST" th:object="${review}"  >
+
+		<textarea  name="text" th:field="*{text}"  required></textarea>
+		
+		<br>
+		<input type="hidden" th:value="${bookId}" th:field="*{bookId}"/>
+		
+		<input type="submit" value="Add review!"/>
+		
+
+	</form>
+
+	<p>
+		<a href="#" th:href="@{/}">Back to index</a>
+	</p>
+	
+	</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymleaf.org/thymleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<title>Welcome to our library!</title>
+</head>
+<body>
+
+
+	<header>
+		<h1>Small Town Library</h1>
+		<h3>“The reading of all good books is like a conversation with
+			the finest minds of past centuries.” – Rene Descartes</h3>
+	</header>
+	<br>
+
+
+	<div th:if="${message}">
+		<h2 th:text="${message}"></h2>
+	</div>
+	
+	
+	<main>
+		<div class="myDiv">
+			<h1>Welcome to the library Database</h1>
+
+			<table>
+				<tr>
+					<th>Title</th>
+					<th>Author</th>
+					<th>Reviews</th>
+				</tr>
+				<tr th:each="book: ${booksList}">
+
+					<td th:text="${book.title}" th:name="title"
+						th:value="${book.title}"></td>
+					<td th:text="${book.author}"></td>
+					<td><a href="#" th:href="@{/viewBook/} + ${book.id}">View</a>
+
+
+						<input type="hidden" name="book.id" th:value="${book.id}" />
+				</tr>
+			</table>
+			<section sec:authorize="isAnonymous()">
+				Login <a href="#" th:href="@{/login}">here</a>
+			</section>
+
+			<section sec:authorize="hasAnyRole('ROLE_MANAGER')">
+
+				<h3>You are logged in as an admin</h3>
+				<br> <a href="#" th:href="@{/admin/addBook}">Add a Book </a>
+
+			</section>
+
+			<section sec:authorize="hasAnyRole('ROLE_USER','ROLE_MANAGER')">
+				<form action="#" th:action="@{/logout}" method="post">
+					<input type="submit" value="Logout">
+				</form>
+			</section>
+		</div>
+
+	</main>
+
+
+</body>
+</html>
